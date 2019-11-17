@@ -1,5 +1,5 @@
 package com.lambdaschool.usermodel.services;
-
+/*
 import com.lambdaschool.usermodel.models.Useremail;
 
 import java.util.List;
@@ -22,3 +22,4 @@ public interface UseremailService
 
     // note emails are added through the user process
 }
+*/

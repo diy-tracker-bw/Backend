@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +57,7 @@ public class User extends Auditable
     @ApiModelProperty(name = "Primary Email",
                       required = true,
                       example = "PatrickChow@gmail.com")
-    private String primaryemail;
+    private String email;
 
     @OneToMany(mappedBy = "user",
                cascade = CascadeType.ALL,
@@ -71,31 +70,31 @@ public class User extends Auditable
     @JsonIgnoreProperties("user")
     private List<UserRoles> userroles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user",
-               cascade = CascadeType.ALL,
-               orphanRemoval = true)
-    @JsonIgnoreProperties("user")
-    private List<Useremail> useremails = new ArrayList<>();
+//    @OneToMany(mappedBy = "user",
+//               cascade = CascadeType.ALL,
+//               orphanRemoval = true)
+//    @JsonIgnoreProperties("user")
+//    private List<Useremail> useremails = new ArrayList<>();
 
     public User()
     {
     }
 
-    public User(String username, String password, String primaryemail, List<Project> projects, List<UserRoles> userRoles) {
+    public User(String username, String password, String email, List<Project> projects, List<UserRoles> userRoles) {
         this.username = username;
         this.password = password;
-        this.primaryemail = primaryemail;
+        this.email = email;
         this.projects = projects;
     }
 
     public User(String username,
                 String password,
-                String primaryemail,
+                String email,
                 List<UserRoles> userRoles)
     {
         setUsername(username);
         setPassword(password);
-        this.primaryemail = primaryemail;
+        this.email = email;
         for (UserRoles ur : userRoles)
         {
             ur.setUser(this);
@@ -131,20 +130,20 @@ public class User extends Auditable
         this.username = username.toLowerCase();
     }
 
-    public String getPrimaryemail()
+    public String getEmail()
     {
-        if (primaryemail == null) // this is possible when updating a user
+        if (email == null) // this is possible when updating a user
         {
             return null;
         } else
         {
-            return primaryemail.toLowerCase();
+            return email.toLowerCase();
         }
     }
 
-    public void setPrimaryemail(String primaryemail)
+    public void setEmail(String email)
     {
-        this.primaryemail = primaryemail.toLowerCase();
+        this.email = email.toLowerCase();
     }
 
     public String getPassword()
@@ -173,15 +172,15 @@ public class User extends Auditable
         this.userroles = userroles;
     }
 
-    public List<Useremail> getUseremails()
-    {
-        return useremails;
-    }
-
-    public void setUseremails(List<Useremail> useremails)
-    {
-        this.useremails = useremails;
-    }
+//    public List<Useremail> getUseremails()
+//    {
+//        return useremails;
+//    }
+//
+//    public void setUseremails(List<Useremail> useremails)
+//    {
+//        this.useremails = useremails;
+//    }
 
     public List<Project> getProjects() {
         return projects;

@@ -1,4 +1,4 @@
-package com.lambdaschool.usermodel.controllers;
+/*package com.lambdaschool.usermodel.controllers;
 
 import com.lambdaschool.usermodel.logging.Loggable;
 import com.lambdaschool.usermodel.models.Useremail;
@@ -13,8 +13,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-
+import java.util.List; */
+/*
 @RestController
 @RequestMapping("/useremails")
 @Loggable
@@ -103,3 +103,4 @@ public class UseremailController
 
     // note emails are added through the user process
 }
+*/

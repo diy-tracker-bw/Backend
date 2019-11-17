@@ -88,7 +88,7 @@ public class OpenController
 
         newuser.setUsername(newminuser.getUsername());
         newuser.setPassword(newminuser.getPassword());
-        newuser.setPrimaryemail(newminuser.getPrimaryemail());
+        newuser.setEmail(newminuser.getPrimaryemail());
 
         // TODO FOR NOW, ALL NEW USERS HAVE THE SAME RIGHTS AS ADMINS TO MAKE MY LIFE EASIER. WILL PROBABLY CHANGE THIS LATER.
 

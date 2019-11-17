@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService
         newUser.setUsername(user.getUsername()
                                 .toLowerCase());
         newUser.setPasswordNotEncrypt(user.getPassword());
-        newUser.setPrimaryemail(user.getPrimaryemail()
+        newUser.setEmail(user.getEmail()
                                     .toLowerCase());
 
         ArrayList<UserRoles> newRoles = new ArrayList<>();
@@ -103,12 +103,12 @@ public class UserServiceImpl implements UserService
         }
         newUser.setUserroles(newRoles);
 
-        for (Useremail ue : user.getUseremails())
-        {
-            newUser.getUseremails()
-                   .add(new Useremail(newUser,
-                                      ue.getUseremail()));
-        }
+//        for (Useremail ue : user.getUseremails())
+//        {
+//            newUser.getUseremails()
+//                   .add(new Useremail(newUser,
+//                                      ue.getUseremail()));
+//        }
 
         for(Project currentProject: user.getProjects()){
             newUser.getProjects().add(new Project(currentProject.getProjectName(), currentProject.getInstructions(), currentProject.getPhotoUrl(), newUser));
@@ -143,9 +143,9 @@ public class UserServiceImpl implements UserService
                 currentUser.setPasswordNotEncrypt(user.getPassword());
             }
 
-            if (user.getPrimaryemail() != null)
+            if (user.getEmail() != null)
             {
-                currentUser.setPrimaryemail(user.getPrimaryemail()
+                currentUser.setEmail(user.getEmail()
                                                 .toLowerCase());
             }
 
@@ -155,16 +155,16 @@ public class UserServiceImpl implements UserService
                 throw new ResourceFoundException("User Roles are not updated through User. See endpoint POST: users/user/{userid}/role/{roleid}");
             }
 
-            if (user.getUseremails()
-                    .size() > 0)
-            {
-                for (Useremail ue : user.getUseremails())
-                {
-                    currentUser.getUseremails()
-                               .add(new Useremail(currentUser,
-                                                  ue.getUseremail()));
-                }
-            }
+//            if (user.getUseremails()
+//                    .size() > 0)
+//            {
+//                for (Useremail ue : user.getUseremails())
+//                {
+//                    currentUser.getUseremails()
+//                               .add(new Useremail(currentUser,
+//                                                  ue.getUseremail()));
+//                }
+//            }
 
             return userrepos.save(currentUser);
         } else

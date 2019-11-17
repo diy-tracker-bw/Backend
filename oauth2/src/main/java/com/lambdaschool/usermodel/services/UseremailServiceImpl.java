@@ -1,5 +1,5 @@
 package com.lambdaschool.usermodel.services;
-
+/*
 import com.lambdaschool.usermodel.exceptions.ResourceNotFoundException;
 import com.lambdaschool.usermodel.logging.Loggable;
 import com.lambdaschool.usermodel.models.Useremail;
@@ -111,3 +111,4 @@ public class UseremailServiceImpl implements UseremailService
         }
     }
 }
+*/

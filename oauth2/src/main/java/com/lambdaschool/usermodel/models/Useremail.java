@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-
+/*
 @Loggable
 @Entity
 @Table(name = "useremails",
@@ -76,3 +76,4 @@ public class Useremail extends Auditable
         this.user = user;
     }
 }
+*/
