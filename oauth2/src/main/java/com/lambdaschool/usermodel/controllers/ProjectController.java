@@ -36,7 +36,7 @@ public class ProjectController {
         logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
 
         List<Project> allProjects = projectService.listAllProjects();
-        
+
         return new ResponseEntity<>(allProjects, HttpStatus.OK);
     }
 }

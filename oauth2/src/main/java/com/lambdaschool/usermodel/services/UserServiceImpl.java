@@ -3,10 +3,7 @@ package com.lambdaschool.usermodel.services;
 import com.lambdaschool.usermodel.exceptions.ResourceFoundException;
 import com.lambdaschool.usermodel.exceptions.ResourceNotFoundException;
 import com.lambdaschool.usermodel.logging.Loggable;
-import com.lambdaschool.usermodel.models.Role;
-import com.lambdaschool.usermodel.models.User;
-import com.lambdaschool.usermodel.models.UserRoles;
-import com.lambdaschool.usermodel.models.Useremail;
+import com.lambdaschool.usermodel.models.*;
 import com.lambdaschool.usermodel.repository.RoleRepository;
 import com.lambdaschool.usermodel.repository.UserRepository;
 import com.lambdaschool.usermodel.view.UserNameCountEmails;
@@ -111,6 +108,10 @@ public class UserServiceImpl implements UserService
             newUser.getUseremails()
                    .add(new Useremail(newUser,
                                       ue.getUseremail()));
+        }
+
+        for(Project currentProject: user.getProjects()){
+            newUser.getProjects().add(new Project(currentProject.getProjectName(), currentProject.getDescription(), currentProject.getPhotoUrl(), newUser));
         }
 
         return userrepos.save(newUser);

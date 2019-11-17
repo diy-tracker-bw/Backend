@@ -23,7 +23,7 @@ public class Project extends Auditable
 
     private String photoUrl;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userid",
             nullable = false)
     @JsonIgnoreProperties("projects")
@@ -44,6 +44,11 @@ public class Project extends Auditable
         this.description = description;
         this.photoUrl = photoUrl;
         this.user = user;
+    }
+
+    public Project(String projectname, String description) {
+        this.projectname = projectname;
+        this.description = description;
     }
 
     public Project(String projectName, User user, String description, String photoUrl, List<String> materials, List<String> steps) {

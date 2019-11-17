@@ -3,10 +3,8 @@ package com.lambdaschool.usermodel;
 import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
-import com.lambdaschool.usermodel.models.Role;
-import com.lambdaschool.usermodel.models.User;
-import com.lambdaschool.usermodel.models.UserRoles;
-import com.lambdaschool.usermodel.models.Useremail;
+import com.lambdaschool.usermodel.models.*;
+import com.lambdaschool.usermodel.services.ProjectService;
 import com.lambdaschool.usermodel.services.RoleService;
 import com.lambdaschool.usermodel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,8 @@ public class SeedData implements CommandLineRunner
     @Autowired
     UserService userService;
 
+    @Autowired
+    ProjectService projectService;
 
     @Override
     public void run(String[] args) throws Exception
@@ -59,6 +59,29 @@ public class SeedData implements CommandLineRunner
                              "admin@mymail.local"));
 
         userService.save(u1);
+
+
+
+        ArrayList<Project> projects = new ArrayList<>();
+
+
+        User u10 = new User("patrick123",
+                           "password",
+                           "patrick123@gmail.com",
+                            admins);
+        u10.getProjects().add(new Project("Sample Project Name", "Sample Description", "Sample photoURL", u10));
+        u10.getProjects().add(new Project("Another Sample Project Name", "Another Sample Description", "Another Sample photoURL", u10));
+
+        userService.save(u10);
+
+        User u11 = new User("kevin",
+                            "password",
+                            "kevin@gmail.com",
+                            admins);
+
+        u11.getProjects().add(new Project("Kevin's Project Name", "Kevin's Project Description", "Kevin's photoURL", u11));
+
+        userService.save(u11);
 
         // data, user
         ArrayList<UserRoles> datas = new ArrayList<>();

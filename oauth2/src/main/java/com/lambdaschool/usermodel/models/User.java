@@ -81,6 +81,13 @@ public class User extends Auditable
     {
     }
 
+    public User(String username, String password, String primaryemail, List<Project> projects, List<UserRoles> userRoles) {
+        this.username = username;
+        this.password = password;
+        this.primaryemail = primaryemail;
+        this.projects = projects;
+    }
+
     public User(String username,
                 String password,
                 String primaryemail,
@@ -95,6 +102,8 @@ public class User extends Auditable
         }
         this.userroles = userRoles;
     }
+
+
 
     public long getUserid()
     {
