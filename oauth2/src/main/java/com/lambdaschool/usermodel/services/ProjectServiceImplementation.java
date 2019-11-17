@@ -41,9 +41,9 @@ public class ProjectServiceImplementation implements ProjectService {
                 updatedProject.setProjectName(oldProject.getProjectName());
             }
 
-            if (oldProject.getDescription() != null)
+            if (oldProject.getInstructions() != null)
             {
-                updatedProject.setDescription(oldProject.getDescription());
+                updatedProject.setInstructions(oldProject.getInstructions());
             }
 
             return projectRepository.save(updatedProject);
@@ -91,10 +91,10 @@ public class ProjectServiceImplementation implements ProjectService {
 
     }
 
-//    @Override
-//    public Project findProjectById(long id) {
-//        return null;
-//    }
+    @Override
+    public Project findProjectById(long id) {
+        return null;
+    }
 //
 //    @Override
 //    public Project findByProjectName(String name) {

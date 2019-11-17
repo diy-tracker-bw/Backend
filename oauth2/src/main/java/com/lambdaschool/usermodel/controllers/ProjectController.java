@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,5 +39,15 @@ public class ProjectController {
         List<Project> allProjects = projectService.listAllProjects();
 
         return new ResponseEntity<>(allProjects, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/projects/{id}",
+                produces = {"application/json"})
+    public ResponseEntity<?> getProjectById(HttpServletRequest request, @PathVariable long id)
+    {
+        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+
+        Project project = projectService.findProjectById(id);
+        return new ResponseEntity<>(project, HttpStatus.OK);
     }
 }

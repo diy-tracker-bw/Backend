@@ -19,7 +19,7 @@ public class Project extends Auditable
     private String projectname;
 
     @Column(nullable = false)
-    private String description;
+    private String instructions;
 
     private String photoUrl;
 
@@ -29,35 +29,25 @@ public class Project extends Auditable
     @JsonIgnoreProperties("projects")
     private User user;
 
-//    @Column
-//    @ElementCollection(targetClass=String.class)
-//    private List<String> materials;
-//
-//    @Column
-//    @ElementCollection(targetClass=String.class)
-//    private List<String> steps;
-
     public Project() {}
 
-    public Project(String projectname, String description, String photoUrl, User user) {
+    public Project(String projectname, String instructions, String photoUrl, User user) {
         this.projectname = projectname;
-        this.description = description;
+        this.instructions = instructions;
         this.photoUrl = photoUrl;
         this.user = user;
     }
 
-    public Project(String projectname, String description) {
+    public Project(String projectname, String instructions) {
         this.projectname = projectname;
-        this.description = description;
+        this.instructions = instructions;
     }
 
-    public Project(String projectName, User user, String description, String photoUrl, List<String> materials, List<String> steps) {
+    public Project(String projectName, User user, String instructions, String photoUrl, List<String> materials, List<String> steps) {
         this.projectname = projectName;
         this.user = user;
-        this.description = description;
+        this.instructions = instructions;
         this.photoUrl = photoUrl;
-//        this.materials = materials;
-//        this.steps = steps;
     }
 
 
@@ -85,12 +75,12 @@ public class Project extends Auditable
         this.user = user;
     }
 
-    public String getDescription() {
-        return description;
+    public String getInstructions() {
+        return instructions;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
     public String getPhotoUrl() {

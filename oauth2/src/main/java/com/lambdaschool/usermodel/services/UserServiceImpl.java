@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService
         }
 
         for(Project currentProject: user.getProjects()){
-            newUser.getProjects().add(new Project(currentProject.getProjectName(), currentProject.getDescription(), currentProject.getPhotoUrl(), newUser));
+            newUser.getProjects().add(new Project(currentProject.getProjectName(), currentProject.getInstructions(), currentProject.getPhotoUrl(), newUser));
         }
 
         return userrepos.save(newUser);

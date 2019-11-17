@@ -17,7 +17,7 @@ public interface ProjectService {
 
     List<Project> listAllProjectsByUsername(String username);
 
-//    Project findProjectById(long id);
-//
+    Project findProjectById(long id);
+
 //    Project findByProjectName(String name);
 }
