@@ -2,6 +2,7 @@ package com.lambdaschool.usermodel.services;
 
 
 import com.lambdaschool.usermodel.models.Project;
+import com.lambdaschool.usermodel.models.User;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface ProjectService {
 
     List<Project> listAllProjects();
 
-    List<Project> listAllProjectsByUsername(String username);
+    List<Project> listAllProjectsByUsername(User user);
 
     Project findProjectById(long id);
 

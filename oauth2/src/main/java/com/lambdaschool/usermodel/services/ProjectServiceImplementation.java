@@ -2,6 +2,7 @@ package com.lambdaschool.usermodel.services;
 
 import com.lambdaschool.usermodel.exceptions.ResourceNotFoundException;
 import com.lambdaschool.usermodel.models.Project;
+import com.lambdaschool.usermodel.models.User;
 import com.lambdaschool.usermodel.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -85,9 +86,9 @@ public class ProjectServiceImplementation implements ProjectService {
     }
 
     @Override
-    public List<Project> listAllProjectsByUsername(String username) {
+    public List<Project> listAllProjectsByUsername(User user) {
 
-        return projectRepository.findProjectsByUser(username);
+        return projectRepository.findProjectsByUser(user);
 
     }
 

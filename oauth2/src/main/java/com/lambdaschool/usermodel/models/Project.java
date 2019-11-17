@@ -23,7 +23,7 @@ public class Project extends Auditable
 
     private String photoUrl;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "userid",
             nullable = false)
     @JsonIgnoreProperties("projects")
