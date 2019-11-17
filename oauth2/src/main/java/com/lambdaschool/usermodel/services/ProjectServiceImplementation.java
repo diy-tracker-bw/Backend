@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectServiceImplementation implements ProjectService {
@@ -74,7 +75,11 @@ public class ProjectServiceImplementation implements ProjectService {
 
     @Override
     public List<Project> returnAllProjects() {
-        return null;
+        List<Project> projects = new ArrayList<>();
+
+        projectRepository.findAll().iterator().forEachRemaining(projects::add);
+        
+        return projects;
     }
 
     @Override
