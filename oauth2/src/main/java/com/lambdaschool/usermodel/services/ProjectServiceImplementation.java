@@ -43,14 +43,15 @@ public class ProjectServiceImplementation implements ProjectService {
 
         if (projectRepository.findById(id).get().getUser().getUsername().equalsIgnoreCase(authentication.getName()))
         {
-            if (oldProject.getPhotoUrl()!= null)
-            {
-                updatedProject.setPhotoUrl(oldProject.getPhotoUrl());
-            }
 
             if (oldProject.getProjectName() != null)
             {
                 updatedProject.setProjectName(oldProject.getProjectName());
+            }
+
+            if (oldProject.getPhotoUrl()!= null)
+            {
+                updatedProject.setPhotoUrl(oldProject.getPhotoUrl());
             }
 
             if (oldProject.getInstructions() != null)

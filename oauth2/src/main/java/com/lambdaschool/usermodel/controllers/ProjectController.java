@@ -87,6 +87,17 @@ public class ProjectController {
 
     }
 
+    @PutMapping(value = "/project/{projectId}")
+    public ResponseEntity<?> updateProject(HttpServletRequest request,
+                                           @RequestBody Project updateProject,
+                                           @PathVariable long projectId)
+    {
+        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+
+        projectService.update(updateProject, projectId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @DeleteMapping("/project/{id}")
     public ResponseEntity<?> deleteProjectById(HttpServletRequest request, @PathVariable long id)
     {
