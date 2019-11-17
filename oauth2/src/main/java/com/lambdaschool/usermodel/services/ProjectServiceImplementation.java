@@ -24,7 +24,7 @@ public class ProjectServiceImplementation implements ProjectService {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        Project updatedProject = projectRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Project id " + id + " not found!"));
+        Project updatedProject = projectRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Project id " + id + " not found"));
 
         if (projectRepository.findById(id).get().getUser().getUsername().equalsIgnoreCase(authentication.getName()))
         {
@@ -53,7 +53,23 @@ public class ProjectServiceImplementation implements ProjectService {
 
     @Override
     public void delete(long id) {
+        if (projectRepository.findById(id).isPresent()) {
 
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+            if (projectRepository.findById(id).get().getUser().getUsername().equalsIgnoreCase(authentication.getName()))
+            {
+                projectRepository.deleteById(id);
+            }
+            else
+            {
+                throw new ResourceNotFoundException("Delete Failed. Only the user that made this project may delete this.");
+            }
+        }
+        else
+        {
+            throw new ResourceNotFoundException("Project id " + id + " not found");
+        }
     }
 
     @Override
