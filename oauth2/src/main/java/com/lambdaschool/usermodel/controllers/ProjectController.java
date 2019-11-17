@@ -41,7 +41,7 @@ public class ProjectController {
         return new ResponseEntity<>(allProjects, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/projects/{id}",
+    @GetMapping(value = "/project/{id}",
                 produces = {"application/json"})
     public ResponseEntity<?> getProjectById(HttpServletRequest request, @PathVariable long id)
     {

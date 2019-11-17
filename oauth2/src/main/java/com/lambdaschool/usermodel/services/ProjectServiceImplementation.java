@@ -93,7 +93,7 @@ public class ProjectServiceImplementation implements ProjectService {
 
     @Override
     public Project findProjectById(long id) {
-        return null;
+        return projectRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Project id " + id + " not found"));
     }
 //
 //    @Override
