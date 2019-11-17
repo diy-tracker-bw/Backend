@@ -43,15 +43,15 @@ public class Swagger2Config
                                                                         resolver.resolve(TokenModel.class))
                                                       .ignoredParameterTypes()
                                                       .tags(new Tag("UserEndpoints",
-                                                                    "Endpoints driven by users"),
+                                                                    "Endpoints driven by users. (Authenticated Users can use these endpoints)"),
                                                             new Tag("RolesEndpoints",
-                                                                    "Endpoints driven by roles"),
+                                                                    "Endpoints driven by roles. (Endpoints that only Admins should be able to used)"),
                                                             new Tag("UseremailEndpoints",
-                                                                    "Endpoints driven by Useremails"),
+                                                                    "Endpoints driven by Useremails. (Endpoints that only Admins should be able to use)"),
                                                             new Tag("LogoutEndpoint",
                                                                     "Endpoint for logging out a user. (Current Token becomes unusable)"),
                                                             new Tag("OpenEndpoint",
-                                                                    "Endpoints available to all"));
+                                                                    "Endpoints available to all. (No token required to use these endpoints)"));
 
     }
 

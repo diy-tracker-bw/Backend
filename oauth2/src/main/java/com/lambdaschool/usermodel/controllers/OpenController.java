@@ -90,19 +90,32 @@ public class OpenController
         newuser.setPassword(newminuser.getPassword());
         newuser.setPrimaryemail(newminuser.getPrimaryemail());
 
+        // TODO FOR NOW, ALL NEW USERS HAVE THE SAME RIGHTS AS ADMINS TO MAKE MY LIFE EASIER. WILL PROBABLY CHANGE THIS LATER.
+
         ArrayList<UserRoles> newRoles = new ArrayList<>();
         newRoles.add(new UserRoles(newuser,
-                                   roleService.findByName("user")));
+                                   roleService.findByName("admin")));
         newuser.setUserroles(newRoles);
 
         newuser = userService.save(newuser);
 
+        /* Code for some reason wouldn't show the user to get GetAllUser call from Postgres but would show the user in the H2 database
         // set the location header for the newly created resource - to another controller!
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newUserURI = ServletUriComponentsBuilder.fromUriString(httpServletRequest.getServerName() + ":" + httpServletRequest.getLocalPort() + "/users/user/{userId}")
                                                     .buildAndExpand(newuser.getUserid())
                                                     .toUri();
+        responseHeaders.setLocation(newUserURI);*/
+
+        // Code from UserController
+         // set the location header for the newly created resource
+        HttpHeaders responseHeaders = new HttpHeaders();
+        URI newUserURI = ServletUriComponentsBuilder.fromCurrentRequest()
+                                                    .path("/{userid}")
+                                                    .buildAndExpand(newuser.getUserid())
+                                                    .toUri();
         responseHeaders.setLocation(newUserURI);
+
 
         String theToken = "";
         if (getaccess)

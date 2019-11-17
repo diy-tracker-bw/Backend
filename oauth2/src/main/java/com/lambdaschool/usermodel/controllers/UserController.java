@@ -59,7 +59,7 @@ public class UserController
                 produces = {"application/json"})
     public ResponseEntity<?> listAllUsers(HttpServletRequest request,
                                           @PageableDefault(page = 0,
-                                                           size = 5)
+                                                           size = 500)
                                                   Pageable pageable)
     {
         logger.trace(request.getMethod()
@@ -210,31 +210,32 @@ public class UserController
                                         response = User.class), @ApiResponse(code = 404,
                                                                              message = "User Not Found",
                                                                              response = ErrorDetail.class)})
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping(value = "/user",
-                 consumes = {"application/json"})
-    public ResponseEntity<?> addNewUser(HttpServletRequest request,
-                                        @Valid
-                                        @RequestBody
-                                                User newuser) throws URISyntaxException
-    {
-        logger.trace(request.getMethod()
-                            .toUpperCase() + " " + request.getRequestURI() + " accessed");
-
-        newuser = userService.save(newuser);
-
-        // set the location header for the newly created resource
-        HttpHeaders responseHeaders = new HttpHeaders();
-        URI newUserURI = ServletUriComponentsBuilder.fromCurrentRequest()
-                                                    .path("/{userid}")
-                                                    .buildAndExpand(newuser.getUserid())
-                                                    .toUri();
-        responseHeaders.setLocation(newUserURI);
-
-        return new ResponseEntity<>(null,
-                                    responseHeaders,
-                                    HttpStatus.CREATED);
-    }
+    // Register from UserController is uncessary because the OpenController has a createnewuser method.
+////    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @PostMapping(value = "/user",
+//                 consumes = {"application/json"})
+//    public ResponseEntity<?> addNewUser(HttpServletRequest request,
+//                                        @Valid
+//                                        @RequestBody
+//                                                User newuser) throws URISyntaxException
+//    {
+//        logger.trace(request.getMethod()
+//                            .toUpperCase() + " " + request.getRequestURI() + " accessed");
+//
+//        newuser = userService.save(newuser);
+//
+//        // set the location header for the newly created resource
+//        HttpHeaders responseHeaders = new HttpHeaders();
+//        URI newUserURI = ServletUriComponentsBuilder.fromCurrentRequest()
+//                                                    .path("/{userid}")
+//                                                    .buildAndExpand(newuser.getUserid())
+//                                                    .toUri();
+//        responseHeaders.setLocation(newUserURI);
+//
+//        return new ResponseEntity<>(null,
+//                                    responseHeaders,
+//                                    HttpStatus.CREATED);
+//    }
 
 
     // http://localhost:2019/users/user/7
