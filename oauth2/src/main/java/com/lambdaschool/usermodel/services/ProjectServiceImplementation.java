@@ -6,10 +6,12 @@ import com.lambdaschool.usermodel.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service(value = "projectService")
 public class ProjectServiceImplementation implements ProjectService {
 
     @Autowired
@@ -74,26 +76,28 @@ public class ProjectServiceImplementation implements ProjectService {
     }
 
     @Override
-    public List<Project> returnAllProjects() {
+    public List<Project> listAllProjects() {
         List<Project> projects = new ArrayList<>();
 
         projectRepository.findAll().iterator().forEachRemaining(projects::add);
-        
+
         return projects;
     }
 
     @Override
-    public List<Project> returnProjectsByOwner(String username) {
-        return null;
+    public List<Project> listAllProjectsByUsername(String username) {
+
+        return projectRepository.findProjectsByUser(username);
+
     }
 
-    @Override
-    public Project findProjectById(long id) {
-        return null;
-    }
-
-    @Override
-    public Project findByProjectName(String name) {
-        return null;
-    }
+//    @Override
+//    public Project findProjectById(long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public Project findByProjectName(String name) {
+//        return null;
+//    }
 }

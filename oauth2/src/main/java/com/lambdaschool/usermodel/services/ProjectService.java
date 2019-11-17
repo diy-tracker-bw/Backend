@@ -13,11 +13,11 @@ public interface ProjectService {
 
     void delete(long id);
 
-    List<Project> returnAllProjects();
+    List<Project> listAllProjects();
 
-    List<Project> returnProjectsByOwner(String username);
+    List<Project> listAllProjectsByUsername(String username);
 
-    Project findProjectById(long id);
-
-    Project findByProjectName(String name);
+//    Project findProjectById(long id);
+//
+//    Project findByProjectName(String name);
 }
