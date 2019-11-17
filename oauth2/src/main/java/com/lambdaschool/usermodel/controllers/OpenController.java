@@ -61,6 +61,15 @@ public class OpenController
         }
     }
 
+    /*@PostMapping(value = "/login",
+                 consumes = {"application/json"})
+    public ResponseEntity<?> login(@RequestBody String username, String password)throws URISyntaxException{
+
+        User user = userService.findByName(username);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }*/
+
     @PostMapping(value = "/createnewuser",
                  consumes = {"application/json"},
                  produces = {"application/json"})

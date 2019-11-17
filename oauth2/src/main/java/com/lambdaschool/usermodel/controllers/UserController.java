@@ -75,7 +75,7 @@ public class UserController
     @ApiOperation(value = "returns all Users without paging or sorting",
                   response = User.class,
                   responseContainer = "List")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/allusers",
                 produces = {"application/json"})
     public ResponseEntity<?> reallyListAllUsers()
@@ -94,7 +94,7 @@ public class UserController
                                         response = User.class), @ApiResponse(code = 404,
                                                                              message = "User Not Found",
                                                                              response = ErrorDetail.class)})
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/user/{userId}",
                 produces = {"application/json"})
     public ResponseEntity<?> getUserById(HttpServletRequest request,
@@ -121,7 +121,7 @@ public class UserController
                                         response = User.class), @ApiResponse(code = 404,
                                                                              message = "User Not Found",
                                                                              response = ErrorDetail.class)})
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/user/name/{userName}",
                 produces = {"application/json"})
     public ResponseEntity<?> getUserByName(HttpServletRequest request,
@@ -155,7 +155,7 @@ public class UserController
                                                                                                                                                                            dataType = "string",
                                                                                                                                                                            paramType = "query",
                                                                                                                                                                            value = "Sorting criteria in the format: property(,asc|desc). " + "Default sort order is ascending. " + "Multiple sort criteria are supported.")})
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/user/name/like/{userName}",
                 produces = {"application/json"})
     public ResponseEntity<?> getUserLikeName(
@@ -210,7 +210,7 @@ public class UserController
                                         response = User.class), @ApiResponse(code = 404,
                                                                              message = "User Not Found",
                                                                              response = ErrorDetail.class)})
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping(value = "/user",
                  consumes = {"application/json"})
     public ResponseEntity<?> addNewUser(HttpServletRequest request,
@@ -276,7 +276,7 @@ public class UserController
 
 
     // http://localhost:2019/users/user/14
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping(value = "/user/{id}")
     public ResponseEntity<?> deleteUserById(HttpServletRequest request,
                                             @PathVariable
@@ -291,7 +291,7 @@ public class UserController
 
 
     // http://localhost:2019/users/user/7/role/2
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping(value = "/user/{userid}/role/{roleid}")
     public ResponseEntity<?> deleteUserRoleByIds(HttpServletRequest request,
                                                  @PathVariable
@@ -310,7 +310,7 @@ public class UserController
 
 
     // http://localhost:2019/users/user/15/role/2
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping(value = "/user/{userid}/role/{roleid}")
     public ResponseEntity<?> postUserRoleByIds(HttpServletRequest request,
                                                @PathVariable
@@ -329,7 +329,7 @@ public class UserController
 
 
     // http://localhost:2019/users/user/email/count
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/user/email/count",
                 produces = {"application/json"})
     public ResponseEntity<?> getNumUserEmails(HttpServletRequest request)

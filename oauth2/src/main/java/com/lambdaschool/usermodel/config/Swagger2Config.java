@@ -49,7 +49,7 @@ public class Swagger2Config
                                                             new Tag("UseremailEndpoints",
                                                                     "Endpoints driven by Useremails"),
                                                             new Tag("LogoutEndpoint",
-                                                                    "Endpoint for logging out a user"),
+                                                                    "Endpoint for logging out a user. (Current Token becomes unusable)"),
                                                             new Tag("OpenEndpoint",
                                                                     "Endpoints available to all"));
 
@@ -57,13 +57,11 @@ public class Swagger2Config
 
     private ApiInfo apiEndPointsInfo()
     {
-        return new ApiInfoBuilder().title("User Model Project")
-                                   .description("User Model Project but in more detail")
-                                   .contact(new Contact("John Mitchell",
-                                                        "http://www.lambdaschool.com",
-                                                        "john@lambdaschool.com"))
-                                   .license("MIT")
-                                   .licenseUrl("https://github.com/LambdaSchool/java-usermodel/blob/master/LICENSE")
+        return new ApiInfoBuilder().title("DIY Tracker")
+                                   .description("Backend Documentation to share and learn DIY Projects")
+                                   .contact(new Contact("Patrick Chow",
+                                                        "",
+                                                        "PatrickChow0803@gmail.com.com"))
                                    .version(("1.0.0"))
                                    .build();
     }
