@@ -17,42 +17,54 @@ import java.util.List;
 
 // User is considered the parent entity
 
-@ApiModel(value = "User",
-          description = "Yes, this is an actual user")
+@ApiModel(value = "User")
+//          description = "Yes, this is an actual user")
 @Loggable
 @Entity
 @Table(name = "users")
 public class User extends Auditable
 {
-    @ApiModelProperty(name = "user id",
-                      value = "primary key for User",
-                      required = true,
-                      example = "1")
+//    @ApiModelProperty(name = "user id",
+//                      value = "primary key for User",
+//                      required = true)
+//                      example = "1")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userid;
 
     @ApiModelProperty(name = "User Name",
-                      value = "Actual user name for sign on",
+//                      value = "Actual user name for sign on",
                       required = true,
-                      example = "Some Name")
-    @Size(min = 2,
-          max = 30,
-          message = "User Name must be between 2 and 30 characters")
+                      example = "Patrick")
+//    @Size(min = 2,
+//          max = 30,
+//          message = "User Name must be between 2 and 30 characters")
     @Column(nullable = false,
             unique = true)
     private String username;
 
     @Column(nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Size(min = 4,
-          message = "Password must 4 or more characters")
+//    @Size(min = 4,
+//          message = "Password must 4 or more characters")
+    @ApiModelProperty(name = "password",
+                      required = true,
+                      example = "catsanddogs")
     private String password;
 
     @Column(nullable = false,
             unique = true)
     @Email(message = "Email should be valid format username@domain.toplevel")
+    @ApiModelProperty(name = "Primary Email",
+                      required = true,
+                      example = "PatrickChow@gmail.com")
     private String primaryemail;
+
+    @OneToMany(mappedBy = "user",
+               cascade = CascadeType.ALL,
+               orphanRemoval = true)
+    @JsonIgnoreProperties("user")
+    private List<Project> projects = new ArrayList<>();
 
     @OneToMany(mappedBy = "user",
                cascade = CascadeType.ALL)
@@ -160,6 +172,14 @@ public class User extends Auditable
     public void setUseremails(List<Useremail> useremails)
     {
         this.useremails = useremails;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 
     @JsonIgnore

@@ -2,7 +2,7 @@ package com.lambdaschool.usermodel.controllers;
 
 import com.lambdaschool.usermodel.logging.Loggable;
 import com.lambdaschool.usermodel.models.User;
-import com.lambdaschool.usermodel.models.UserMinimum;
+import com.lambdaschool.usermodel.models.NewUser;
 import com.lambdaschool.usermodel.models.UserRoles;
 import com.lambdaschool.usermodel.services.RoleService;
 import com.lambdaschool.usermodel.services.UserService;
@@ -78,7 +78,7 @@ public class OpenController
                                                 boolean getaccess,
                                         @Valid
                                         @RequestBody
-                                                UserMinimum newminuser) throws URISyntaxException
+                                                NewUser newminuser) throws URISyntaxException
     {
         logger.trace(httpServletRequest.getMethod()
                                        .toUpperCase() + " " + httpServletRequest.getRequestURI() + " accessed");

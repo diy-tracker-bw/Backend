@@ -1,12 +1,18 @@
 package com.lambdaschool.usermodel.models;
 
 import com.lambdaschool.usermodel.logging.Loggable;
+import io.swagger.annotations.ApiModelProperty;
 
 @Loggable
-public class UserMinimum
+public class NewUser
 {
+    @ApiModelProperty(required = true)
     private String username;
+
+    @ApiModelProperty(required = true)
     private String password;
+
+    @ApiModelProperty(required = true)
     private String primaryemail;
 
     public String getUsername()
