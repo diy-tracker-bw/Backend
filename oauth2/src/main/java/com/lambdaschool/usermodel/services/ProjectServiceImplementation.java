@@ -20,7 +20,18 @@ public class ProjectServiceImplementation implements ProjectService {
 
     @Override
     public Project save(Project project) {
+        Authentication authentication = SecurityContextHolder.getContext()
+                .getAuthentication();
+
+        if (project.getUser()
+                .getUsername()
+                .equalsIgnoreCase(authentication.getName()))
+        {
             return projectRepository.save(project);
+        } else
+        {
+            throw new ResourceNotFoundException((authentication.getName() + "not authorized to make change"));
+        }
     }
 
     @Override
@@ -85,12 +96,12 @@ public class ProjectServiceImplementation implements ProjectService {
         return projects;
     }
 
-    @Override
-    public List<Project> listAllProjectsByUsername(User user) {
-
-        return projectRepository.findProjectsByUser(user);
-
-    }
+//    @Override
+//    public List<Project> listAllProjectsByUser(User user) {
+//
+//        return projectRepository.findProjectsByUser(user);
+//
+//    }
 
     @Override
     public Project findProjectById(long id) {

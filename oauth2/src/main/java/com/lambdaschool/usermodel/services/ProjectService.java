@@ -16,7 +16,7 @@ public interface ProjectService {
 
     List<Project> listAllProjects();
 
-    List<Project> listAllProjectsByUsername(User user);
+//    List<Project> listAllProjectsByUser(User user);
 
     Project findProjectById(long id);
 

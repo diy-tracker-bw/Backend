@@ -69,8 +69,8 @@ public class SeedData implements CommandLineRunner
                            "password",
                            "patrick123@gmail.com",
                             admins);
-        u10.getProjects().add(new Project("Sample Project Name", "Sample Description", "Sample photoURL", u10));
-        u10.getProjects().add(new Project("Another Sample Project Name", "Another Sample Description", "Another Sample photoURL", u10));
+        u10.getProjects().add(new Project("Sample Project Name", "Sample Instructions", "Sample photoURL", u10));
+        u10.getProjects().add(new Project("Another Sample Project Name", "Another Sample Instructions", "Another Sample photoURL", u10));
 
         userService.save(u10);
 
@@ -79,7 +79,7 @@ public class SeedData implements CommandLineRunner
                             "kevin@gmail.com",
                             admins);
 
-        u11.getProjects().add(new Project("Kevin's Project Name", "Kevin's Project Description", "Kevin's photoURL", u11));
+        u11.getProjects().add(new Project("Kevin's Project Name", "Kevin's Project Instructions", "Kevin's photoURL", u11));
 
         userService.save(u11);
 

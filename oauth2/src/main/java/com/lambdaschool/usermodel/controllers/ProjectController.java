@@ -2,19 +2,25 @@ package com.lambdaschool.usermodel.controllers;
 
 import com.lambdaschool.usermodel.logging.Loggable;
 import com.lambdaschool.usermodel.models.Project;
+import com.lambdaschool.usermodel.models.User;
 import com.lambdaschool.usermodel.services.ProjectService;
 import com.lambdaschool.usermodel.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @Loggable
@@ -41,6 +47,17 @@ public class ProjectController {
         return new ResponseEntity<>(allProjects, HttpStatus.OK);
     }
 
+//    @GetMapping(value = "/projects/",
+//                produces = {"application/json"},
+//                consumes = {"application/json"})
+//    public ResponseEntity<?> getProjectsByUser(HttpServletRequest request, @RequestBody User user)
+//    {
+//        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+//
+//        List<Project> usersProjects = projectService.listAllProjectsByUser(user);
+//        return new ResponseEntity<>(usersProjects, HttpStatus.OK);
+//    }
+
     @GetMapping(value = "/project/{id}",
                 produces = {"application/json"})
     public ResponseEntity<?> getProjectById(HttpServletRequest request, @PathVariable long id)
@@ -49,6 +66,25 @@ public class ProjectController {
 
         Project project = projectService.findProjectById(id);
         return new ResponseEntity<>(project, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/projects",
+                consumes = {"application/json"},
+                produces = {"application/json"})
+    public ResponseEntity<?> addNewProject(HttpServletRequest request, @Valid @RequestBody Project newProject) throws URISyntaxException
+    {
+        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+
+        newProject =projectService.save(newProject);
+
+        HttpHeaders responseHeaders = new HttpHeaders();
+        URI newArticleURI = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/articles")
+                .buildAndExpand(newProject.getProjectId())
+                .toUri();
+        responseHeaders.setLocation(newArticleURI);
+        return new ResponseEntity<>("Successfully added new project", responseHeaders, HttpStatus.CREATED);
+
     }
 
     @DeleteMapping("/project/{id}")
