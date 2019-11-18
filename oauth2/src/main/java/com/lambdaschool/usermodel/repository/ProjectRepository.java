@@ -15,6 +15,8 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
 
     List<Project>findAllByUser_Username(String name);
 
+//    Project findProjectByProjectId(long id);
+
 //    List<Project> findProjectsByUser(User user);
 
 //    void deleteById(Long id);

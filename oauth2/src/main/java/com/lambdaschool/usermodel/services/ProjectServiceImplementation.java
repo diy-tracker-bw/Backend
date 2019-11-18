@@ -32,6 +32,17 @@ public class ProjectServiceImplementation implements ProjectService {
     }
 
     @Override
+    public Project addLike(long projectId) {
+//        Project likedProject = projectRepository.findProjectByProjectId(projectId);
+//        likedProject.setLikes(likedProject.getLikes()+1);
+
+        Project likedProject = projectRepository.findById(projectId).orElseThrow(() -> new ResourceNotFoundException("Project id " + projectId + " not found"));
+        likedProject.setLikes(likedProject.getLikes()+1);
+
+        return projectRepository.save(likedProject);
+    }
+
+    @Override
     public Project update(Project oldProject, long id) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

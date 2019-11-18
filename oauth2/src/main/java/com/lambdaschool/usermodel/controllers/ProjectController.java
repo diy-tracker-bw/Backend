@@ -99,6 +99,16 @@ public class ProjectController {
 
     }
 
+    @PutMapping(value = "/project/like/{projectId}")
+    public ResponseEntity<?> addLike(HttpServletRequest request,
+                                           @PathVariable long projectId)
+    {
+        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+
+        projectService.addLike(projectId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PutMapping(value = "/project/{projectId}")
     public ResponseEntity<?> updateProject(HttpServletRequest request,
                                            @RequestBody Project updateProject,
