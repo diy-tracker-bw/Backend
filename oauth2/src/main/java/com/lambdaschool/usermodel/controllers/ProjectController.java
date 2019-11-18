@@ -68,7 +68,7 @@ public class ProjectController {
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/projects",
+    @PostMapping(value = "/project",
                 consumes = {"application/json"},
                 produces = {"application/json"})
     public ResponseEntity<?> addNewProject(HttpServletRequest request, @Valid @RequestBody Project newProject) throws URISyntaxException
@@ -78,11 +78,11 @@ public class ProjectController {
         newProject =projectService.save(newProject);
 
         HttpHeaders responseHeaders = new HttpHeaders();
-        URI newArticleURI = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/articles")
+        URI newProjectURI = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/projects")
                 .buildAndExpand(newProject.getProjectId())
                 .toUri();
-        responseHeaders.setLocation(newArticleURI);
+        responseHeaders.setLocation(newProjectURI);
         return new ResponseEntity<>("Successfully added new project", responseHeaders, HttpStatus.CREATED);
 
     }

@@ -78,7 +78,7 @@ public class OpenController
                                                 boolean getaccess,
                                         @Valid
                                         @RequestBody
-                                                NewUser newminuser) throws URISyntaxException
+                                                NewUser newUser) throws URISyntaxException
     {
         logger.trace(httpServletRequest.getMethod()
                                        .toUpperCase() + " " + httpServletRequest.getRequestURI() + " accessed");
@@ -86,9 +86,9 @@ public class OpenController
         // Create the user
         User newuser = new User();
 
-        newuser.setUsername(newminuser.getUsername());
-        newuser.setPassword(newminuser.getPassword());
-        newuser.setEmail(newminuser.getPrimaryemail());
+        newuser.setUsername(newUser.getUsername());
+        newuser.setPassword(newUser.getPassword());
+        newuser.setEmail(newUser.getEmail());
 
         // TODO FOR NOW, ALL NEW USERS HAVE THE SAME RIGHTS AS ADMINS TO MAKE MY LIFE EASIER. WILL PROBABLY CHANGE THIS LATER.
 
@@ -139,9 +139,9 @@ public class OpenController
             map.add("scope",
                     "read write trust");
             map.add("username",
-                    newminuser.getUsername());
+                    newUser.getUsername());
             map.add("password",
-                    newminuser.getPassword());
+                    newUser.getPassword());
 
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map,
                                                                                  headers);

@@ -6,14 +6,17 @@ import io.swagger.annotations.ApiModelProperty;
 @Loggable
 public class NewUser
 {
-    @ApiModelProperty(required = true)
+    @ApiModelProperty(required = true,
+                      example = "lambdauser")
     private String username;
 
-    @ApiModelProperty(required = true)
+    @ApiModelProperty(required = true,
+                      example = "lambdapass")
     private String password;
 
-    @ApiModelProperty(required = true)
-    private String primaryemail;
+    @ApiModelProperty(required = true,
+                      example = "lambda@gmail.com")
+    private String email;
 
     public String getUsername()
     {
@@ -35,13 +38,13 @@ public class NewUser
         this.password = password;
     }
 
-    public String getPrimaryemail()
+    public String getEmail()
     {
-        return primaryemail;
+        return email;
     }
 
-    public void setPrimaryemail(String primaryemail)
+    public void setEmail(String email)
     {
-        this.primaryemail = primaryemail;
+        this.email = email;
     }
 }

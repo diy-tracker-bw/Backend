@@ -2,6 +2,7 @@ package com.lambdaschool.usermodel.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,18 +16,20 @@ public class Project extends Auditable
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long projectid;
 
+    @ApiModelProperty(required = true)
     @Column(nullable = false)
     private String projectname;
 
+    @ApiModelProperty(required = true)
     @Column(nullable = false)
     private String instructions;
 
     private String photoUrl;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "userid",
-            nullable = false)
-    @JsonIgnoreProperties("projects")
+            nullable = true)
+    @JsonIgnoreProperties({"projects", "userroles"})
     private User user;
 
     public Project() {}

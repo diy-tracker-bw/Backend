@@ -108,7 +108,7 @@
     </dependencies>
 
     <build>
-        <finalName>jrmmba-usermodel</finalName>
+        <finalName>patrick-diy</finalName>
 
         <plugins>
             <plugin>

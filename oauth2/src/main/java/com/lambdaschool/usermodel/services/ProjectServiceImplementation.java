@@ -20,12 +20,9 @@ public class ProjectServiceImplementation implements ProjectService {
 
     @Override
     public Project save(Project project) {
-        Authentication authentication = SecurityContextHolder.getContext()
-                .getAuthentication();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (project.getUser()
-                .getUsername()
-                .equalsIgnoreCase(authentication.getName()))
+        if (project.getUser().getUsername().equalsIgnoreCase(authentication.getName()))
         {
             return projectRepository.save(project);
         } else
