@@ -86,6 +86,11 @@ public class ProjectServiceImplementation implements ProjectService {
     }
 
     @Override
+    public List<Project> findByUserName(String username) {
+        return projectRepository.findAllByUser_Username(username);
+    }
+
+    @Override
     public List<Project> listAllProjects() {
         List<Project> projects = new ArrayList<>();
 

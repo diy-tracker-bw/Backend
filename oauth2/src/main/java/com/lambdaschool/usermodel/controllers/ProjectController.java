@@ -68,6 +68,16 @@ public class ProjectController {
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/projects/{username}",
+            produces = {"application/json"})
+    public ResponseEntity<?> findProjectsByUserName(HttpServletRequest request, @PathVariable String username)
+    {
+        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+
+        List<Project> userProjects = projectService.findByUserName(username);
+        return new ResponseEntity<>(userProjects, HttpStatus.OK);
+    }
+
     @PostMapping(value = "/project",
                 consumes = {"application/json"},
                 produces = {"application/json"})
