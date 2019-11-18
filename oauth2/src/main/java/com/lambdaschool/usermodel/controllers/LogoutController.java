@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Loggable
 @Controller
-@Api(tags = {"LogoutEndpoint"})
+@Api(tags = {"LogoutEndpoints"})
 public class LogoutController
 {
     private static final Logger logger = LoggerFactory.getLogger(LogoutController.class);

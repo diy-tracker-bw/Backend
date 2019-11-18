@@ -44,13 +44,15 @@ public class Swagger2Config
                                                       .ignoredParameterTypes()
                                                       .tags(new Tag("UserEndpoints",
                                                                     "Endpoints driven by users. (Authenticated Users can use these endpoints)"),
+                                                            new Tag("ProjectEndPoints",
+                                                                    "Endpoints for projects. (Authenticated Users can use these endpoints)"),
                                                             new Tag("RolesEndpoints",
                                                                     "Endpoints driven by roles. (Endpoints that only Admins should be able to used)"),
 //                                                            new Tag("UseremailEndpoints",
 //                                                                    "Endpoints driven by Useremails. (Endpoints that only Admins should be able to use)"),
-                                                            new Tag("LogoutEndpoint",
+                                                            new Tag("LogoutEndpoints",
                                                                     "Endpoint for logging out a user. (Current Token becomes unusable)"),
-                                                            new Tag("OpenEndpoint",
+                                                            new Tag("OpenEndpoints",
                                                                     "Endpoints available to all. (No token required to use these endpoints)"));
 
     }
@@ -62,7 +64,7 @@ public class Swagger2Config
                                    .contact(new Contact("Patrick Chow",
                                                         "",
                                                         "PatrickChow0803@gmail.com.com"))
-                                   .version(("1.0.0"))
+                                   .version(("1.0.1"))
                                    .build();
     }
 }

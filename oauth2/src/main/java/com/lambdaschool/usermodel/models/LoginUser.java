@@ -4,21 +4,15 @@ import com.lambdaschool.usermodel.logging.Loggable;
 import io.swagger.annotations.ApiModelProperty;
 
 @Loggable
-public class NewUser
-{
+public class LoginUser {
+
     @ApiModelProperty(required = true,
-                      example = "lambdauser")
+            example = "admin")
     private String username;
 
     @ApiModelProperty(required = true,
-                      example = "lambdapass")
+            example = "password")
     private String password;
-
-    @ApiModelProperty(required = true,
-                      example = "lambda@gmail.com")
-    private String email;
-
-    private String photourl;
 
     public String getUsername()
     {
@@ -38,23 +32,5 @@ public class NewUser
     public void setPassword(String password)
     {
         this.password = password;
-    }
-
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
-
-    public String getPhotourl() {
-        return photourl;
-    }
-
-    public void setPhotourl(String photourl) {
-        this.photourl = photourl;
     }
 }

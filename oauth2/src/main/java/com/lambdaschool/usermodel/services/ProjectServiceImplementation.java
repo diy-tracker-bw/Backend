@@ -32,6 +32,17 @@ public class ProjectServiceImplementation implements ProjectService {
     }
 
     @Override
+    public Project addLike(long projectId) {
+//        Project likedProject = projectRepository.findProjectByProjectId(projectId);
+//        likedProject.setLikes(likedProject.getLikes()+1);
+
+        Project likedProject = projectRepository.findById(projectId).orElseThrow(() -> new ResourceNotFoundException("Project id " + projectId + " not found"));
+        likedProject.setLikes(likedProject.getLikes()+1);
+
+        return projectRepository.save(likedProject);
+    }
+
+    @Override
     public Project update(Project oldProject, long id) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -86,6 +97,11 @@ public class ProjectServiceImplementation implements ProjectService {
     }
 
     @Override
+    public List<Project> findByUserName(String username) {
+        return projectRepository.findAllByUser_Username(username);
+    }
+
+    @Override
     public List<Project> listAllProjects() {
         List<Project> projects = new ArrayList<>();
 
@@ -93,13 +109,6 @@ public class ProjectServiceImplementation implements ProjectService {
 
         return projects;
     }
-
-//    @Override
-//    public List<Project> listAllProjectsByUser(User user) {
-//
-//        return projectRepository.findProjectsByUser(user);
-//
-//    }
 
     @Override
     public Project findProjectById(long id) {

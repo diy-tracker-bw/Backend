@@ -1,6 +1,7 @@
 package com.lambdaschool.usermodel.controllers;
 
 import com.lambdaschool.usermodel.logging.Loggable;
+import com.lambdaschool.usermodel.models.LoginUser;
 import com.lambdaschool.usermodel.models.User;
 import com.lambdaschool.usermodel.models.NewUser;
 import com.lambdaschool.usermodel.models.UserRoles;
@@ -27,7 +28,7 @@ import java.util.List;
 
 @Loggable
 @RestController
-@Api(tags = {"OpenEndpoint"})
+@Api(tags = {"OpenEndpoints"})
 public class OpenController
 {
     private static final Logger logger = LoggerFactory.getLogger(OpenController.class);
@@ -70,6 +71,51 @@ public class OpenController
         return new ResponseEntity<>(user, HttpStatus.OK);
     }*/
 
+    @PostMapping(value = "/user/login",
+            consumes = {"application/json"},
+            produces = {"application/json"})
+    public ResponseEntity<?> loginUser(HttpServletRequest httpServletRequest, @RequestParam(defaultValue = "true")
+                                               boolean getaccess,
+                                            @Valid
+                                            @RequestBody
+                                               LoginUser loginUser) throws URISyntaxException
+    {
+
+        String theToken = "";
+
+        // return the access token
+        RestTemplate restTemplate = new RestTemplate();
+        String requestURI = "http://" + httpServletRequest.getServerName() + getPort(httpServletRequest) + "/login";
+
+        List<MediaType> acceptableMediaTypes = new ArrayList<>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.setAccept(acceptableMediaTypes);
+        headers.setBasicAuth(System.getenv("OAUTHCLIENTID"),
+                System.getenv("OAUTHCLIENTSECRET"));
+
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("grant_type",
+                "password");
+        map.add("scope",
+                "read write trust");
+        map.add("username",
+                loginUser.getUsername());
+        map.add("password",
+                loginUser.getPassword());
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map,
+                headers);
+
+        theToken = restTemplate.postForObject(requestURI,
+                request,
+                String.class);
+
+        return new ResponseEntity<>(theToken, HttpStatus.OK);
+    }
+
     @PostMapping(value = "/createnewuser",
                  consumes = {"application/json"},
                  produces = {"application/json"})
@@ -78,7 +124,7 @@ public class OpenController
                                                 boolean getaccess,
                                         @Valid
                                         @RequestBody
-                                                NewUser newUser) throws URISyntaxException
+                                                NewUser registerUser) throws URISyntaxException
     {
         logger.trace(httpServletRequest.getMethod()
                                        .toUpperCase() + " " + httpServletRequest.getRequestURI() + " accessed");
@@ -86,9 +132,10 @@ public class OpenController
         // Create the user
         User newuser = new User();
 
-        newuser.setUsername(newUser.getUsername());
-        newuser.setPassword(newUser.getPassword());
-        newuser.setEmail(newUser.getEmail());
+        newuser.setUsername(registerUser.getUsername());
+        newuser.setPassword(registerUser.getPassword());
+        newuser.setEmail(registerUser.getEmail());
+        newuser.setPhotourl(registerUser.getPhotourl());
 
         // TODO FOR NOW, ALL NEW USERS HAVE THE SAME RIGHTS AS ADMINS TO MAKE MY LIFE EASIER. WILL PROBABLY CHANGE THIS LATER.
 
@@ -139,9 +186,9 @@ public class OpenController
             map.add("scope",
                     "read write trust");
             map.add("username",
-                    newUser.getUsername());
+                    registerUser.getUsername());
             map.add("password",
-                    newUser.getPassword());
+                    registerUser.getPassword());
 
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map,
                                                                                  headers);

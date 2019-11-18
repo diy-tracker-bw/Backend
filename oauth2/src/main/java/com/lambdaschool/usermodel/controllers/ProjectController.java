@@ -5,6 +5,7 @@ import com.lambdaschool.usermodel.models.Project;
 import com.lambdaschool.usermodel.models.User;
 import com.lambdaschool.usermodel.services.ProjectService;
 import com.lambdaschool.usermodel.services.UserService;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import java.util.List;
 @Loggable
 @RestController
 @RequestMapping("/projects")
+@Api(tags = {"ProjectEndPoints"})
 public class ProjectController {
 
     @Autowired
@@ -68,6 +70,16 @@ public class ProjectController {
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/projects/{username}",
+            produces = {"application/json"})
+    public ResponseEntity<?> findProjectsByUserName(HttpServletRequest request, @PathVariable String username)
+    {
+        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+
+        List<Project> userProjects = projectService.findByUserName(username);
+        return new ResponseEntity<>(userProjects, HttpStatus.OK);
+    }
+
     @PostMapping(value = "/project",
                 consumes = {"application/json"},
                 produces = {"application/json"})
@@ -87,6 +99,16 @@ public class ProjectController {
 
     }
 
+    @PutMapping(value = "/project/like/{projectId}")
+    public ResponseEntity<?> addLike(HttpServletRequest request,
+                                           @PathVariable long projectId)
+    {
+        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+
+        projectService.addLike(projectId);
+        return new ResponseEntity<>("Successfully added like to project", HttpStatus.OK);
+    }
+
     @PutMapping(value = "/project/{projectId}")
     public ResponseEntity<?> updateProject(HttpServletRequest request,
                                            @RequestBody Project updateProject,
@@ -95,7 +117,7 @@ public class ProjectController {
         logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
 
         projectService.update(updateProject, projectId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Successfully updated project",HttpStatus.OK);
     }
 
     @DeleteMapping("/project/{id}")
@@ -104,6 +126,6 @@ public class ProjectController {
         logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
 
         projectService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Successfully deleted project", HttpStatus.OK);
     }
 }

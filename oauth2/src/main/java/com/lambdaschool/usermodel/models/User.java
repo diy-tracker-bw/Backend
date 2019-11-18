@@ -42,6 +42,9 @@ public class User extends Auditable
             unique = true)
     private String username;
 
+    @Column(nullable = true)
+    private String photourl;
+
     @Column(nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 //    @Size(min = 4,
@@ -85,6 +88,13 @@ public class User extends Auditable
         this.password = password;
         this.email = email;
         this.projects = projects;
+    }
+
+    public User(String username, String photourl, String password, @Email(message = "Email should be valid format username@domain.toplevel") String email) {
+        this.username = username;
+        this.photourl = photourl;
+        this.password = password;
+        this.email = email;
     }
 
     public User(String username,
@@ -188,6 +198,14 @@ public class User extends Auditable
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public String getPhotourl() {
+        return photourl;
+    }
+
+    public void setPhotourl(String photourl) {
+        this.photourl = photourl;
     }
 
     @JsonIgnore

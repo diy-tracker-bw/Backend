@@ -20,5 +20,9 @@ public interface ProjectService {
 
     Project findProjectById(long id);
 
+    List<Project> findByUserName(String username);
+
+    Project addLike(long projectId);
+
 //    Project findByProjectName(String name);
 }

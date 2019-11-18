@@ -26,6 +26,8 @@ public class Project extends Auditable
 
     private String photoUrl;
 
+    private int likes = 0;
+
     @ManyToOne()
     @JoinColumn(name = "userid",
             nullable = true)
@@ -53,6 +55,13 @@ public class Project extends Auditable
         this.photoUrl = photoUrl;
     }
 
+    public Project(String projectname, String instructions, String photoUrl, int likes, User user) {
+        this.projectname = projectname;
+        this.instructions = instructions;
+        this.photoUrl = photoUrl;
+        this.likes = likes;
+        this.user = user;
+    }
 
     public long getProjectId() {
         return projectid;
@@ -94,7 +103,23 @@ public class Project extends Auditable
         this.photoUrl = photoUrl;
     }
 
-//    public List<String> getMaterials() {
+    public String getProjectname() {
+        return projectname;
+    }
+
+    public void setProjectname(String projectname) {
+        this.projectname = projectname;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    //    public List<String> getMaterials() {
 //        return materials;
 //    }
 //
