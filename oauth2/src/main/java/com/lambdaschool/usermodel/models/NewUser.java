@@ -18,6 +18,8 @@ public class NewUser
                       example = "lambda@gmail.com")
     private String email;
 
+    private String photourl;
+
     public String getUsername()
     {
         return username;
@@ -46,5 +48,13 @@ public class NewUser
     public void setEmail(String email)
     {
         this.email = email;
+    }
+
+    public String getPhotourl() {
+        return photourl;
+    }
+
+    public void setPhotourl(String photourl) {
+        this.photourl = photourl;
     }
 }

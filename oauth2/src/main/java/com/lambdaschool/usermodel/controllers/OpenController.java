@@ -28,7 +28,7 @@ import java.util.List;
 
 @Loggable
 @RestController
-@Api(tags = {"OpenEndpoint"})
+@Api(tags = {"OpenEndpoints"})
 public class OpenController
 {
     private static final Logger logger = LoggerFactory.getLogger(OpenController.class);
@@ -124,7 +124,7 @@ public class OpenController
                                                 boolean getaccess,
                                         @Valid
                                         @RequestBody
-                                                NewUser newUser) throws URISyntaxException
+                                                NewUser registerUser) throws URISyntaxException
     {
         logger.trace(httpServletRequest.getMethod()
                                        .toUpperCase() + " " + httpServletRequest.getRequestURI() + " accessed");
@@ -132,9 +132,10 @@ public class OpenController
         // Create the user
         User newuser = new User();
 
-        newuser.setUsername(newUser.getUsername());
-        newuser.setPassword(newUser.getPassword());
-        newuser.setEmail(newUser.getEmail());
+        newuser.setUsername(registerUser.getUsername());
+        newuser.setPassword(registerUser.getPassword());
+        newuser.setEmail(registerUser.getEmail());
+        newuser.setPhotourl(registerUser.getPhotourl());
 
         // TODO FOR NOW, ALL NEW USERS HAVE THE SAME RIGHTS AS ADMINS TO MAKE MY LIFE EASIER. WILL PROBABLY CHANGE THIS LATER.
 
@@ -185,9 +186,9 @@ public class OpenController
             map.add("scope",
                     "read write trust");
             map.add("username",
-                    newUser.getUsername());
+                    registerUser.getUsername());
             map.add("password",
-                    newUser.getPassword());
+                    registerUser.getPassword());
 
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map,
                                                                                  headers);
