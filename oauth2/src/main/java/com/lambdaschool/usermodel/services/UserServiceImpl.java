@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService
         newUser.setPasswordNotEncrypt(user.getPassword());
         newUser.setEmail(user.getEmail().toLowerCase());
         if(user.getPhotourl() != null)
-            newUser.setPhotourl(user.getPhotourl().toLowerCase());
+            newUser.setPhotourl(user.getPhotourl());
 
         ArrayList<UserRoles> newRoles = new ArrayList<>();
         for (UserRoles ur : user.getUserroles())
@@ -148,6 +148,11 @@ public class UserServiceImpl implements UserService
             {
                 currentUser.setEmail(user.getEmail()
                                                 .toLowerCase());
+            }
+
+            if(user.getPhotourl() != null)
+            {
+                currentUser.setPhotourl(user.getPhotourl());
             }
 
             if (user.getUserroles()
