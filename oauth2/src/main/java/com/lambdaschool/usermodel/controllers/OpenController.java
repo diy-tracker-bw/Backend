@@ -1,6 +1,7 @@
 package com.lambdaschool.usermodel.controllers;
 
 import com.lambdaschool.usermodel.logging.Loggable;
+import com.lambdaschool.usermodel.models.LoginUser;
 import com.lambdaschool.usermodel.models.User;
 import com.lambdaschool.usermodel.models.NewUser;
 import com.lambdaschool.usermodel.models.UserRoles;
@@ -69,6 +70,51 @@ public class OpenController
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }*/
+
+    @PostMapping(value = "/user/login",
+            consumes = {"application/json"},
+            produces = {"application/json"})
+    public ResponseEntity<?> loginUser(HttpServletRequest httpServletRequest, @RequestParam(defaultValue = "true")
+                                               boolean getaccess,
+                                            @Valid
+                                            @RequestBody
+                                               LoginUser loginUser) throws URISyntaxException
+    {
+
+        String theToken = "";
+
+        // return the access token
+        RestTemplate restTemplate = new RestTemplate();
+        String requestURI = "http://" + httpServletRequest.getServerName() + getPort(httpServletRequest) + "/login";
+
+        List<MediaType> acceptableMediaTypes = new ArrayList<>();
+        acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.setAccept(acceptableMediaTypes);
+        headers.setBasicAuth(System.getenv("OAUTHCLIENTID"),
+                System.getenv("OAUTHCLIENTSECRET"));
+
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("grant_type",
+                "password");
+        map.add("scope",
+                "read write trust");
+        map.add("username",
+                loginUser.getUsername());
+        map.add("password",
+                loginUser.getPassword());
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map,
+                headers);
+
+        theToken = restTemplate.postForObject(requestURI,
+                request,
+                String.class);
+
+        return new ResponseEntity<>(theToken, HttpStatus.OK);
+    }
 
     @PostMapping(value = "/createnewuser",
                  consumes = {"application/json"},
