@@ -106,7 +106,7 @@ public class ProjectController {
         logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
 
         projectService.addLike(projectId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Successfully added like to project", HttpStatus.OK);
     }
 
     @PutMapping(value = "/project/{projectId}")
@@ -117,7 +117,7 @@ public class ProjectController {
         logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
 
         projectService.update(updateProject, projectId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Successfully updated project",HttpStatus.OK);
     }
 
     @DeleteMapping("/project/{id}")
@@ -126,6 +126,6 @@ public class ProjectController {
         logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
 
         projectService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Successfully deleted project", HttpStatus.OK);
     }
 }

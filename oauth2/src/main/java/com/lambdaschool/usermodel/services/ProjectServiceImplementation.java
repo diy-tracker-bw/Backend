@@ -110,13 +110,6 @@ public class ProjectServiceImplementation implements ProjectService {
         return projects;
     }
 
-//    @Override
-//    public List<Project> listAllProjectsByUser(User user) {
-//
-//        return projectRepository.findProjectsByUser(user);
-//
-//    }
-
     @Override
     public Project findProjectById(long id) {
         return projectRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Project id " + id + " not found"));
