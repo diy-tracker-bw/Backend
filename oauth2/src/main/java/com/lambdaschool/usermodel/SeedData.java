@@ -69,17 +69,17 @@ public class SeedData implements CommandLineRunner
                            "password",
                            "patrick123@gmail.com",
                             admins);
-        u10.getProjects().add(new Project("Photo Wall Hanger", "1.Take a wood dowel and paint it black to be used as the support." +
-                " 2.Take a piece of yarn and tie it to both ends of the wood dowel. This piece of yarn will be used to support the entire wall hanging." +
-                " 3.Tie three pieces of yarn between the dowel. These three pieces will be used to hold pictures." +
-                " 4.Apply tape to the back of the images and place them on the yarn." +
-                " 5.Hang your new wall hanger wherever you want!", "https://www.homeyohmy.com/wp-content/uploads/2015/10/DIY-Photo-wall-hanging4.jpg",181, u10));
+        u10.getProjects().add(new Project("Photo Wall Hanger", "1.Take a wood dowel and paint it black to be used as the support. " +
+                "2.Take a piece of yarn and tie it to both ends of the wood dowel. This piece of yarn will be used to support the entire wall hanging. " +
+                "3.Tie three pieces of yarn between the dowel. These three pieces will be used to hold pictures. " +
+                "4.Apply tape to the back of the images and place them on the yarn. " +
+                "5.Hang your new wall hanger wherever you want! ", "https://www.homeyohmy.com/wp-content/uploads/2015/10/DIY-Photo-wall-hanging4.jpg",181, u10));
 
-        u10.getProjects().add(new Project("Simple Book Ends", "1.Take any piece of plastic big enough to support books from falling." +
-                "2.Glue the piece onto the base of a chunk of wood." +
-                "3.(optional) Spray paint both the plastic and the wood." +
-                "4.Repeat steps 1-3 to create the other end of the base." +
-                "5.Place books between.", "https://diycandy.com/wp-content/uploads/2015/05/IMG_6221.jpg", 31, u10));
+        u10.getProjects().add(new Project("Simple Book Ends", "1.Take any piece of plastic big enough to support books from falling. " +
+                "2.Glue the piece onto the base of a chunk of wood. " +
+                "3.(optional) Spray paint both the plastic and the wood. " +
+                "4.Repeat steps 1-3 to create the other end of the base. " +
+                "5.Place books between them. ", "https://diycandy.com/wp-content/uploads/2015/05/IMG_6221.jpg", 31, u10));
 
         userService.save(u10);
 
@@ -88,7 +88,15 @@ public class SeedData implements CommandLineRunner
                             "kevin@gmail.com",
                             admins);
 
-        u11.getProjects().add(new Project("Kevin's Project Name", "Kevin's Project Instructions", "Kevin's photoURL", u11));
+        u11.getProjects().add(new Project("Pocket Tic Tac Toe", "1.Get an empty container of Altoids. " +
+                "2.Cut out a piece of paper big enough to tightly fit into the altoids container. " +
+                "3.Draw a Tic-Tac-Toe grid onto the piece of paper. " +
+                "4.Glue the Tic-Tac-Toe grid into the altoids container. " +
+                "5.Draw ten circles to be used as playing chips. " +
+                "5.Draw five Xes and five Os respectively on each circle. " +
+                "6.Glue each marker onto the top of magnet to give them weight. " +
+                "7.Play a game with someone and have fun. ",
+                "https://www.craftaholicsanonymous.net/wp-content/uploads/2016/06/DIY-pocket-tic-tac-toe-850x850.jpg", 214, u11));
 
         userService.save(u11);
 
