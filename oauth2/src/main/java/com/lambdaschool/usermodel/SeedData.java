@@ -69,7 +69,11 @@ public class SeedData implements CommandLineRunner
                            "password",
                            "patrick123@gmail.com",
                             admins);
-        u10.getProjects().add(new Project("Sample Project Name", "Sample Instructions", "Sample photoURL", u10));
+        u10.getProjects().add(new Project("Photo Wall Hanger", "1.Take a wood dowel and paint it black to be used as the support." +
+                " 2.Take a piece of yarn and tie it to both ends of the wood dowel. This piece of yarn will be used to support the entire wall hanging." +
+                " 3.Tie three pieces of yarn between the dowel. These three pieces will be used to hold pictures." +
+                " 4.Apply tape to the back of the images and place them on the yarn." +
+                " 5.Hang your new wall hanger wherever you want!", "https://www.homeyohmy.com/wp-content/uploads/2015/10/DIY-Photo-wall-hanging4.jpg",181, u10));
         u10.getProjects().add(new Project("Another Sample Project Name", "Another Sample Instructions", "Another Sample photoURL", u10));
 
         userService.save(u10);

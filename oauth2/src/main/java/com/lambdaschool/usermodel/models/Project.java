@@ -21,7 +21,8 @@ public class Project extends Auditable
     private String projectname;
 
     @ApiModelProperty(required = true)
-    @Column(nullable = false)
+    @Column(nullable = false,
+    columnDefinition = "LONGTEXT")
     private String instructions;
 
     private String photoUrl;
@@ -48,8 +49,8 @@ public class Project extends Auditable
         this.instructions = instructions;
     }
 
-    public Project(String projectName, User user, String instructions, String photoUrl, List<String> materials, List<String> steps) {
-        this.projectname = projectName;
+    public Project(String projectname, User user, String instructions, String photoUrl, List<String> materials, List<String> steps) {
+        this.projectname = projectname;
         this.user = user;
         this.instructions = instructions;
         this.photoUrl = photoUrl;
@@ -75,8 +76,8 @@ public class Project extends Auditable
         return projectname;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectname = projectName;
+    public void setProjectName(String projectname) {
+        this.projectname = projectname;
     }
 
     public User getUser() {

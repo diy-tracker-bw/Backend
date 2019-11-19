@@ -47,7 +47,7 @@ public class Swagger2Config
                                                             new Tag("ProjectEndPoints",
                                                                     "Endpoints for projects. (Authenticated Users can use these endpoints)"),
                                                             new Tag("RolesEndpoints",
-                                                                    "Endpoints driven by roles. (Endpoints that only Admins should be able to used)"),
+                                                                    "Endpoints driven by roles. (Endpoints that only Admins should be able to use)"),
 //                                                            new Tag("UseremailEndpoints",
 //                                                                    "Endpoints driven by Useremails. (Endpoints that only Admins should be able to use)"),
                                                             new Tag("LogoutEndpoints",
