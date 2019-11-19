@@ -74,7 +74,12 @@ public class SeedData implements CommandLineRunner
                 " 3.Tie three pieces of yarn between the dowel. These three pieces will be used to hold pictures." +
                 " 4.Apply tape to the back of the images and place them on the yarn." +
                 " 5.Hang your new wall hanger wherever you want!", "https://www.homeyohmy.com/wp-content/uploads/2015/10/DIY-Photo-wall-hanging4.jpg",181, u10));
-        u10.getProjects().add(new Project("Another Sample Project Name", "Another Sample Instructions", "Another Sample photoURL", u10));
+
+        u10.getProjects().add(new Project("Simple Book Ends", "1.Take any piece of plastic big enough to support books from falling." +
+                "2.Glue the piece onto the base of a chunk of wood." +
+                "3.(optional) Spray paint both the plastic and the wood." +
+                "4.Repeat steps 1-3 to create the other end of the base." +
+                "5.Place books between.", "https://diycandy.com/wp-content/uploads/2015/05/IMG_6221.jpg", 31, u10));
 
         userService.save(u10);
 
