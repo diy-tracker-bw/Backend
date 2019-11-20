@@ -72,14 +72,6 @@ public class Project extends Auditable
         this.projectid = projectId;
     }
 
-    public String getProjectName() {
-        return projectname;
-    }
-
-    public void setProjectName(String projectname) {
-        this.projectname = projectname;
-    }
-
     public User getUser() {
         return user;
     }

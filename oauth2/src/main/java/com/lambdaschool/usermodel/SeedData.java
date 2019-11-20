@@ -81,6 +81,8 @@ public class SeedData implements CommandLineRunner
                 "4.Repeat steps 1-3 to create the other end of the base. " +
                 "5.Place books between them. ", "https://diycandy.com/wp-content/uploads/2015/05/IMG_6221.jpg", 31, u10));
 
+
+
         userService.save(u10);
 
         User u11 = new User("kevin",
