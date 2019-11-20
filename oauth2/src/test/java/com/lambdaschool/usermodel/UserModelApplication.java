@@ -19,7 +19,7 @@ public class UserModelApplication
     public static void main(String[] args)
     {
         ApplicationContext ctx = SpringApplication.run(com.lambdaschool.usermodel.UserModelApplication.class,
-                                                       args);
+                args);
 
         DispatcherServlet dispatcherServlet = (DispatcherServlet) ctx.getBean("dispatcherServlet");
         dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);
