@@ -65,7 +65,10 @@ public class ProjectServiceImplementationTest {
     }
 
     @Test
+    @WithMockUser(username = "patrick123", roles = {"USER", "ADMIN"})
     public void delete() {
+        projectService.delete(6);
+        assertEquals(1, projectService.findByUserName("patrick123").size());
     }
 
     @Test
