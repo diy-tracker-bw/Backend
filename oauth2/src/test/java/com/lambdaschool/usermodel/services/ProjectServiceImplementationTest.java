@@ -48,7 +48,12 @@ public class ProjectServiceImplementationTest {
 
     @Test
     public void Bsave() {
+        User userAdmin = userService.findByName("admin");
+        Project newProject = new Project("Sample Name", "Sample Instructions", "Sample photo",
+                50, userAdmin);
 
+        projectService.save(newProject);
+        assertEquals(1, projectService.findByUserName("admin").size());
     }
 
     @Test
