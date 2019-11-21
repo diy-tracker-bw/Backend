@@ -57,7 +57,9 @@ public class ProjectServiceImplementationTest {
     }
 
     @Test
-    public void addLike() {
+    public void YaddLike() {
+        projectService.addLike(6);
+        assertEquals(182, projectService.findProjectById(6).getLikes());
     }
 
     @Test
