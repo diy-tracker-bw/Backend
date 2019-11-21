@@ -47,7 +47,7 @@ public class ProjectServiceImplementationTest {
     }
 
     @Test
-    public void Bsave() {
+    public void ZZAsave() {
         User userAdmin = userService.findByName("admin");
         Project newProject = new Project("Sample Name", "Sample Instructions", "Sample photo",
                 50, userAdmin);
@@ -68,7 +68,7 @@ public class ProjectServiceImplementationTest {
 
     @Test
     @WithMockUser(username = "patrick123", roles = {"USER", "ADMIN"})
-    public void update() {
+    public void Aupdate() {
         Project newProject = new Project();
         newProject.setProjectname("Updated Project Name");
         newProject.setInstructions("Updated Instructions");
@@ -81,18 +81,18 @@ public class ProjectServiceImplementationTest {
 
     @Test
     @WithMockUser(username = "patrick123", roles = {"USER", "ADMIN"})
-    public void Zdelete() {
+    public void ZZdelete() {
         projectService.delete(6);
         assertEquals(1, projectService.findByUserName("patrick123").size());
     }
 
     @Test
-    public void findByUserName() {
+    public void AfindByUserName() {
         assertEquals(2, projectService.findByUserName("patrick123").size());
     }
 
     @Test
-    public void findProjectById() {
+    public void AfindProjectById() {
         assertEquals(181, projectService.findProjectById(6).getLikes());
     }
 }
