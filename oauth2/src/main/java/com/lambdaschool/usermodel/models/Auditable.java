@@ -1,5 +1,6 @@
 package com.lambdaschool.usermodel.models;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -20,7 +21,7 @@ abstract class Auditable
     @CreatedBy
     protected String createdBy;
 
-    @CreatedDate
+    @CreationTimestamp
     @Temporal(TIMESTAMP)
     protected Date createdDate;
 
@@ -30,4 +31,12 @@ abstract class Auditable
     @LastModifiedDate
     @Temporal(TIMESTAMP)
     protected Date lastModifiedDate;
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
 }
