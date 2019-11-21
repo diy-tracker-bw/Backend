@@ -54,6 +54,10 @@ public class ProjectServiceImplementationTest {
 
         projectService.save(newProject);
         assertEquals(1, projectService.findByUserName("admin").size());
+        assertEquals("Sample Name", projectService.findByUserName("admin").get(0).getProjectname());
+        assertEquals("Sample Instructions", projectService.findByUserName("admin").get(0).getInstructions());
+        assertEquals(50, projectService.findByUserName("admin").get(0).getLikes());
+        assertEquals("Sample photo", projectService.findByUserName(("admin")).get(0).getPhotoUrl());
     }
 
     @Test
@@ -70,7 +74,9 @@ public class ProjectServiceImplementationTest {
         newProject.setInstructions("Updated Instructions");
         newProject.setPhotoUrl("Updated Photo URL");
 
+        assertEquals("Updated Project Name", projectService.update(newProject, 6).getProjectname());
         assertEquals("Updated Instructions", projectService.update(newProject, 6).getInstructions());
+        assertEquals("Updated Photo URL", projectService.update(newProject, 6).getPhotoUrl());
     }
 
     @Test
