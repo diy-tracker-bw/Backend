@@ -63,7 +63,14 @@ public class ProjectServiceImplementationTest {
     }
 
     @Test
+    @WithMockUser(username = "patrick123", roles = {"USER", "ADMIN"})
     public void update() {
+        Project newProject = new Project();
+        newProject.setProjectname("Updated Project Name");
+        newProject.setInstructions("Updated Instructions");
+        newProject.setPhotoUrl("Updated Photo URL");
+
+        assertEquals("Updated Instructions", projectService.update(newProject, 6).getInstructions());
     }
 
     @Test
