@@ -69,6 +69,8 @@ public class SeedData implements CommandLineRunner
                 "password",
                 "patrick123@gmail.com",
                 admins);
+
+        // Project ID is 6
         u10.getProjects().add(new Project("Photo Wall Hanger", "1.Take a wood dowel and paint it black to be used as the support. " +
                 "2.Take a piece of yarn and tie it to both ends of the wood dowel. This piece of yarn will be used to support the entire wall hanging. " +
                 "3.Tie three pieces of yarn between the dowel. These three pieces will be used to hold pictures. " +

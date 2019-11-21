@@ -66,19 +66,18 @@ public class ProjectServiceImplementationTest {
 
     @Test
     @WithMockUser(username = "patrick123", roles = {"USER", "ADMIN"})
-    public void delete() {
+    public void Zdelete() {
         projectService.delete(6);
         assertEquals(1, projectService.findByUserName("patrick123").size());
     }
 
     @Test
     public void findByUserName() {
+        assertEquals(2, projectService.findByUserName("patrick123").size());
     }
-
-
 
     @Test
     public void findProjectById() {
-
+        assertEquals(181, projectService.findProjectById(6).getLikes());
     }
 }
